@@ -1,0 +1,82 @@
+<!-- views/taskpage.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Page</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    .task-container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .task-list {
+      margin-top: 20px;
+    }
+    .task-item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    form {
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 5px;
+    }
+    button {
+      padding: 6px 10px;
+      margin-left: 5px;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="task-container">
+    <h2>Welcome, <%= user.username %>!</h2>
+    <a href="/logout">Logout</a>
+
+    <h3>Add New Task</h3>
+    <form action="/addtask" method="POST">
+      <!-- Name changed from task_name to title to match common backend expectations -->
+      <input type="text" name="title" required placeholder="Enter new task">
+      <textarea name="description" required placeholder="Write an description about task" rows="4" cols="50"></textarea>
+
+      <button type="submit">Add</button>
+    </form>
+
+    <div class="task-list">
+      <h3>Your Tasks</h3>
+      <% if (tasks.length === 0) { %>
+        <p>No tasks found.</p>
+      <% } else { %>
+        <% tasks.forEach(task => { %>
+          <div class="task-item">
+            <form action="/edittask/<%= task.task_id %>" method="POST" style="display:inline;">
+              <input type="text" name="title" value="<%= task.title %>" required>
+              <textarea name="description" required><%= task.description %></textarea>
+              <label for="status">Status:</label>
+              <select name="status" id="status">
+                <option value ="pending">Pending</option>
+                <option value="completed">Completed</option>
+              </select>
+
+              <button type="submit">Update</button>
+            </form>
+            <form action="/deletetask/<%= task.task_id %>" method="GET" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+
+            <!-- <a href="/logout">Logout</a> -->
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+    <a href="/logout">Logout</a>
+  </div>
+</body>
+</html>
