@@ -4,8 +4,6 @@ const path = require('path');
 const { setupDatabase } = require('./db');
 
 const {createUserTable}= require("./model/userschema")
-
-// const createTaskTable = require("./model/taskschema")
 const { createTaskTable } = require('./model/taskschema');
 
 
@@ -32,7 +30,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ Make sure this file exists and named correctly: routes/authRoutes.js
+
 app.use('/', require('./routers/routes'));
 
 (async () => {
@@ -43,9 +41,9 @@ app.use('/', require('./routers/routes'));
 
     const PORT = 3000;
     app.listen(PORT, () => {
-      console.log(`✅ Server running at http://localhost:${PORT}`);
+      console.log(` Server running at http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error('❌ Server startup error:', error);
+    console.error(' Server startup error:', error);
   }
 })();

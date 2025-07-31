@@ -79,8 +79,6 @@ const deleteTask = async (user_id, task_id) => {
   }
 };
 
-
-
 exports.taskPage = async (req, res) => {
     if (req.session.user) {
       res.set('Cache-Control', 'no-store');

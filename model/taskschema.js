@@ -13,12 +13,12 @@ const createTaskTable = async () => {
       );
     `;
     await pool.query(query);
-    console.log('✅ taskTable created or already exists');
+    console.log('taskTable created or already exists');
   } catch (error) {
-    console.error('❌ Error creating taskTable:', error);
+    console.error(' Error creating taskTable:', error);
   }
 };
 
 module.exports = {
-  createTaskTable // ✅ Make sure this is exported
+  createTaskTable 
 };

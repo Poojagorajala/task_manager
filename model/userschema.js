@@ -1,8 +1,8 @@
-const { getPool } = require('../db'); // ✅ Import getPool
+const { getPool } = require('../db');
 
 const createUserTable = async () => {
   try {
-    const pool = getPool(); // ✅ Get initialized pool
+    const pool = getPool();
     const query = `
       CREATE TABLE IF NOT EXISTS userTable (
         user_id SERIAL PRIMARY KEY,
@@ -12,9 +12,9 @@ const createUserTable = async () => {
       );
     `;
     await pool.query(query);
-    console.log('✅ userTable created or already exists');
+    console.log(' userTable created or already exists');
   } catch (error) {
-    console.error('❌ Error creating userTable:', error);
+    console.error(' Error creating userTable:', error);
   }
 };
 
